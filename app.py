@@ -36,7 +36,7 @@ class JsonConverter:
             shape_attributes["all_points_y"] = all_points_y
             region_attributes = {'Class':Class}
             shape_attributes["region_attributes"] = region_attributes
-            regions.append(shape_attributes)
+            regions.append({"shape_attributes":shape_attributes})
         temp[root_key] = {"filename":filename,"size":size,"regions":regions,"file_attributes":{}}
         return temp
 
