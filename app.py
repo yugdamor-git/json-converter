@@ -73,7 +73,7 @@ class JsonConverter:
             name = annotation["name"]
             temp_class = None
             if not name in unique_class:
-                temp_class = str(len(unique_class.keys()) + 1)
+                temp_class = str(len(unique_class.keys()))
                 unique_class[name] = temp_class
             else:
                 temp_class = unique_class[name]
