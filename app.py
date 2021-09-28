@@ -57,7 +57,6 @@ class JsonConverter:
         }
 
         src_json = self.load_json(byte_data)
-        st.write(src_json)
         image =  src_json["image"]
         root_key = image["filename"]
         filename = root_key
@@ -133,7 +132,7 @@ class JsonConverter:
             "_via_image_id_list":via_image_id_list
         }
 
-        return temp
+        return temp,via_img_metadata
 
 
 json_converter = JsonConverter()
@@ -152,9 +151,10 @@ if not input_format is None:
             input_filename = input_file.name
         
             output_filename = f'output_{input_filename}'
-            output_file_data = json_converter.json_to_json_converter(input_file)
+            output_file_data,output_file_data_2 = json_converter.json_to_json_converter(input_file)
 
-            st.download_button("Download",data=json.dumps(output_file_data),mime="application/json")
+            st.download_button("Download Output 1",data=json.dumps(output_file_data_2),mime="application/json")
+            st.download_button("Download Output 2",data=json.dumps(output_file_data),mime="application/json")
 
             st.header("output preview")    
             st.write(output_file_data)
