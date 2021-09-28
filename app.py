@@ -84,7 +84,7 @@ class JsonConverter:
                 all_points_y.append(point["y"])
             shape_attributes["all_points_x"] = all_points_x
             shape_attributes["all_points_y"] = all_points_y
-            region_attributes = {'Class':Class}
+            region_attributes = {'Class':Class,'class':Class}
             regions.append({"shape_attributes":shape_attributes,"region_attributes":region_attributes})
         
         via_img_metadata = {
