@@ -64,7 +64,7 @@ class JsonConverter:
         annotations = src_json["annotations"]
         regions = []
         unique_class = {}
-        unique_class["500"] = "Out_Of_Roi"
+        unique_class["Out_Of_Roi"] = "500"
         for annotation in annotations:
             shape_attributes = {}
             shape_attributes["name"] = "polyline"
