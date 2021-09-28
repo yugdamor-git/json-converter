@@ -153,8 +153,8 @@ if not input_format is None:
             output_filename = f'output_{input_filename}'
             output_file_data,output_file_data_2 = json_converter.json_to_json_converter(input_file)
 
-            st.download_button("Download Output 1",data=json.dumps(output_file_data_2),mime="application/json")
-            st.download_button("Download Output 2",data=json.dumps(output_file_data),mime="application/json")
+            st.download_button("Download Output 1 (Mask)",data=json.dumps(output_file_data_2),mime="application/json")
+            st.download_button("Download Output 2 (Project)",data=json.dumps(output_file_data),mime="application/json")
 
             st.header("output preview")    
             st.write(output_file_data)
