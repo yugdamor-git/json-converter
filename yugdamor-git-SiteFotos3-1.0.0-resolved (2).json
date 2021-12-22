@@ -1,0 +1,1361 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "SiteFotots API",
+    "description": "site fotos",
+    "contact": {
+      "email": "you@your-company.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://sitefotos.com",
+      "description": "Site Fotos"
+    }
+  ],
+  "tags": [
+    {
+      "name": "auth",
+      "description": "Test Authorization token"
+    },
+    {
+      "name": "employees",
+      "description": "Secured Employees-only calls"
+    },
+    {
+      "name": "clients",
+      "description": "Secured Clients-only calls"
+    },
+    {
+      "name": "contractors",
+      "description": "Secured Contractors-only calls"
+    },
+    {
+      "name": "buildings",
+      "description": "Secured Buildings-only calls"
+    }
+  ],
+  "paths": {
+    "/node/api/auth": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "test authorization token",
+        "description": "two headers are mandatory for evey request\npass `x-api-key` & `x-access-code`\n",
+        "operationId": "testAuthorization",
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-access-code",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "valid `x-api-key` & `x-access-code`"
+          },
+          "403": {
+            "description": "Invalid Access Code or API Key"
+          }
+        }
+      }
+    },
+    "/node/api/createEmployee": {
+      "post": {
+        "tags": [
+          "employees"
+        ],
+        "summary": "create new employee entry",
+        "description": "two headers are mandatory for evey request\npass `x-api-key` & `x-access-code`\n",
+        "operationId": "createEmployee",
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-access-code",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "you need to pass all required data into json format",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createBodyReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/createBodyRes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/node/api/getEmployees": {
+      "get": {
+        "tags": [
+          "employees"
+        ],
+        "summary": "get all employee entry",
+        "description": "two headers are mandatory for evey request\npass `x-api-key` & `x-access-code`\n",
+        "operationId": "getEmployees",
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-access-code",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/createBodyRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/node/api/updateEmployee": {
+      "post": {
+        "tags": [
+          "employees"
+        ],
+        "summary": "update employee entry",
+        "description": "two headers are mandatory for evey request\npass `x-api-key` & `x-access-code`\n",
+        "operationId": "updateEmployee",
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-access-code",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "you need to pass all required data into json format",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createBodyReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/createBodyRes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/node/api/deleteEmployee": {
+      "post": {
+        "tags": [
+          "employees"
+        ],
+        "summary": "delete employee entry",
+        "description": "two headers are mandatory for evey request\npass `x-api-key` & `x-access-code`\n",
+        "operationId": "deleteEmployee",
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-access-code",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "you need to pass all required data into json format",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/deleteBodyReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/deleteBodyRes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/node/api/createClient": {
+      "post": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "create new client entry",
+        "description": "two headers are mandatory for evey request\npass `x-api-key` & `x-access-code`\n",
+        "operationId": "createClient",
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-access-code",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "you need to pass all required data into json format",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createClientBodyReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/createClientBodyRes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/node/api/getClients": {
+      "get": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "get all clients entry",
+        "description": "two headers are mandatory for evey request\npass `x-api-key` & `x-access-code`\n",
+        "operationId": "getClients",
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-access-code",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/createBodyRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/node/api/updateClient": {
+      "post": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "update client entry",
+        "description": "two headers are mandatory for evey request\npass `x-api-key` & `x-access-code`\n",
+        "operationId": "updateClient",
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-access-code",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "you need to pass all required data into json format",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createBodyReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/createBodyRes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/node/api/deleteClient": {
+      "post": {
+        "tags": [
+          "clients"
+        ],
+        "summary": "delete client entry",
+        "description": "two headers are mandatory for evey request\npass `x-api-key` & `x-access-code`\n",
+        "operationId": "deleteClient",
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-access-code",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "you need to pass all required data into json format",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/deleteBodyReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/deleteBodyRes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/node/api/createContractor": {
+      "post": {
+        "tags": [
+          "contractors"
+        ],
+        "summary": "create new Contractor entry",
+        "description": "two headers are mandatory for evey request\npass `x-api-key` & `x-access-code`\n",
+        "operationId": "createContractor",
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-access-code",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "you need to pass all required data into json format",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createClientBodyReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/createClientBodyRes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/node/api/getContractors": {
+      "get": {
+        "tags": [
+          "contractors"
+        ],
+        "summary": "get all contractors entry",
+        "description": "two headers are mandatory for evey request\npass `x-api-key` & `x-access-code`\n",
+        "operationId": "getContractors",
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-access-code",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/createBodyRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/node/api/updateContractor": {
+      "post": {
+        "tags": [
+          "contractors"
+        ],
+        "summary": "update contractor entry",
+        "description": "two headers are mandatory for evey request\npass `x-api-key` & `x-access-code`\n",
+        "operationId": "updateContractor",
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-access-code",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "you need to pass all required data into json format",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createBodyReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/createBodyRes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/node/api/deleteContractor": {
+      "post": {
+        "tags": [
+          "contractors"
+        ],
+        "summary": "delete contractor entry",
+        "description": "two headers are mandatory for evey request\npass `x-api-key` & `x-access-code`\n",
+        "operationId": "deleteContractor",
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-access-code",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "you need to pass all required data into json format",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/deleteBodyReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/deleteBodyRes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/node/api/createBuilding": {
+      "post": {
+        "tags": [
+          "buildings"
+        ],
+        "summary": "create new building entry",
+        "description": "two headers are mandatory for evey request\npass `x-api-key` & `x-access-code`\n",
+        "operationId": "createBuilding",
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-access-code",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "you need to pass all required data into json format",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createBuildingBodyReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/createBuildingBodyRes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/node/api/getBuildings": {
+      "get": {
+        "tags": [
+          "buildings"
+        ],
+        "summary": "get all buildings entry",
+        "description": "two headers are mandatory for evey request\npass `x-api-key` & `x-access-code`\n",
+        "operationId": "getBuildings",
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-access-code",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/createBuildingBodyRes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/node/api/updateBuilding": {
+      "post": {
+        "tags": [
+          "buildings"
+        ],
+        "summary": "update building entry",
+        "description": "two headers are mandatory for evey request\npass `x-api-key` & `x-access-code`\n",
+        "operationId": "updateBuilding",
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-access-code",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "you need to pass all required data into json format",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createBuildingBodyReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/createBuildingBodyRes"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/node/api/deleteBuilding": {
+      "post": {
+        "tags": [
+          "buildings"
+        ],
+        "summary": "delete building entry",
+        "description": "two headers are mandatory for evey request\npass `x-api-key` & `x-access-code`\n",
+        "operationId": "deleteBuilding",
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-access-code",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "you need to pass all required data into json format",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/deleteBodyReq"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/deleteBodyRes"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "createBodyReq": {
+        "required": [
+          "address_1",
+          "address_2",
+          "branch",
+          "country",
+          "email",
+          "first_name",
+          "last_name",
+          "mobile",
+          "notes",
+          "phone",
+          "state",
+          "title",
+          "zip"
+        ],
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "example": "Michael"
+          },
+          "last_name": {
+            "type": "string",
+            "example": "Lindenbaum"
+          },
+          "title": {
+            "type": "string",
+            "example": "CEO"
+          },
+          "email": {
+            "type": "string",
+            "example": "mlindenbaum@sitefotos.com"
+          },
+          "phone": {
+            "type": "string",
+            "example": "323232323"
+          },
+          "mobile": {
+            "type": "string",
+            "example": "55555509948"
+          },
+          "branch": {
+            "type": "string",
+            "example": "main"
+          },
+          "address_1": {
+            "type": "string",
+            "example": "123 main st"
+          },
+          "address_2": {
+            "type": "string",
+            "example": "unit 1"
+          },
+          "state": {
+            "type": "string",
+            "example": "CA"
+          },
+          "zip": {
+            "type": "string",
+            "example": "94949"
+          },
+          "country": {
+            "type": "string",
+            "example": "USA"
+          },
+          "notes": {
+            "type": "string",
+            "example": "Test"
+          }
+        }
+      },
+      "createBodyRes": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "074fad96d0e73c832997bc813e759203"
+          },
+          "first_name": {
+            "type": "string",
+            "example": "Michael"
+          },
+          "last_name": {
+            "type": "string",
+            "example": "Lindenbaum"
+          },
+          "title": {
+            "type": "string",
+            "example": "CEO"
+          },
+          "email": {
+            "type": "string",
+            "example": "mlindenbaum@sitefotos.com"
+          },
+          "phone": {
+            "type": "string",
+            "example": "323232323"
+          },
+          "mobile": {
+            "type": "string",
+            "example": "55555509948"
+          },
+          "branch": {
+            "type": "string",
+            "example": "main"
+          },
+          "address_1": {
+            "type": "string",
+            "example": "123 main st"
+          },
+          "address_2": {
+            "type": "string",
+            "example": "unit 1"
+          },
+          "state": {
+            "type": "string",
+            "example": "CA"
+          },
+          "zip": {
+            "type": "string",
+            "example": "94949"
+          },
+          "notes": {
+            "type": "string",
+            "example": "Test"
+          },
+          "contact_id": {
+            "type": "integer",
+            "example": 16
+          }
+        }
+      },
+      "deleteBodyReq": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "test@example.com"
+          }
+        }
+      },
+      "deleteBodyRes": {
+        "type": "object",
+        "properties": {
+          "deleted": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "createClientBodyReq": {
+        "required": [
+          "address_1",
+          "address_2",
+          "branch",
+          "city",
+          "country",
+          "email",
+          "first_name",
+          "last_name",
+          "mobile",
+          "notes",
+          "phone",
+          "state",
+          "title",
+          "zip"
+        ],
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "example": "Bob"
+          },
+          "last_name": {
+            "type": "string",
+            "example": "Johnson"
+          },
+          "title": {
+            "type": "string",
+            "example": "Manager"
+          },
+          "email": {
+            "type": "string",
+            "example": "mlindenbaum@sitefotos.com"
+          },
+          "phone": {
+            "type": "string",
+            "example": "323232323"
+          },
+          "mobile": {
+            "type": "string",
+            "example": "55555509948"
+          },
+          "branch": {
+            "type": "string",
+            "example": "main"
+          },
+          "address_1": {
+            "type": "string",
+            "example": "123 main st"
+          },
+          "address_2": {
+            "type": "string",
+            "example": "unit 1"
+          },
+          "city": {
+            "type": "string",
+            "example": "Denver"
+          },
+          "state": {
+            "type": "string",
+            "example": "CA"
+          },
+          "zip": {
+            "type": "string",
+            "example": "94949"
+          },
+          "country": {
+            "type": "string",
+            "example": "USA"
+          },
+          "notes": {
+            "type": "string",
+            "example": "Test"
+          }
+        }
+      },
+      "createClientBodyRes": {
+        "required": [
+          "address_1",
+          "address_2",
+          "branch",
+          "contact_id",
+          "country",
+          "email",
+          "first_name",
+          "id",
+          "last_name",
+          "mobile",
+          "notes",
+          "phone",
+          "state",
+          "title",
+          "zip"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "5a83ebd6c921a687a3141296019b9bbf"
+          },
+          "first_name": {
+            "type": "string",
+            "example": "Bob"
+          },
+          "last_name": {
+            "type": "string",
+            "example": "Johnson"
+          },
+          "title": {
+            "type": "string",
+            "example": "Manager"
+          },
+          "email": {
+            "type": "string",
+            "example": "mlindenbaum@sitefotos.com"
+          },
+          "phone": {
+            "type": "string",
+            "example": "323232323"
+          },
+          "mobile": {
+            "type": "string",
+            "example": "55555509948"
+          },
+          "branch": {
+            "type": "string",
+            "example": "main"
+          },
+          "address_1": {
+            "type": "string",
+            "example": "123 main st"
+          },
+          "address_2": {
+            "type": "string",
+            "example": "unit 1"
+          },
+          "state": {
+            "type": "string",
+            "example": "CA"
+          },
+          "zip": {
+            "type": "string",
+            "example": "94949"
+          },
+          "country": {
+            "type": "string",
+            "example": "USA"
+          },
+          "notes": {
+            "type": "string",
+            "example": "Test"
+          },
+          "contact_id": {
+            "type": "integer",
+            "example": 25
+          }
+        }
+      },
+      "createBuildingBodyReq": {
+        "required": [
+          "address1",
+          "address2",
+          "city",
+          "lat",
+          "lng",
+          "name",
+          "nickname",
+          "state",
+          "zip"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "123 main"
+          },
+          "nickname": {
+            "type": "string",
+            "example": "Main Building"
+          },
+          "address1": {
+            "type": "string",
+            "example": "123 main st"
+          },
+          "address2": {
+            "type": "string",
+            "example": "unit 1"
+          },
+          "city": {
+            "type": "string",
+            "example": "Dallas"
+          },
+          "state": {
+            "type": "string",
+            "example": "TX"
+          },
+          "zip": {
+            "type": "string",
+            "example": "12121"
+          },
+          "lat": {
+            "type": "string",
+            "example": "39.7392"
+          },
+          "lng": {
+            "type": "string",
+            "example": "-104.9903"
+          }
+        }
+      },
+      "createBuildingBodyRes": {
+        "required": [
+          "address1",
+          "address2",
+          "building_id",
+          "city",
+          "id",
+          "lat",
+          "lng",
+          "name",
+          "nickname",
+          "state",
+          "zip"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "5a83ebd6c921a687a3141296019b9bbf"
+          },
+          "building_id": {
+            "type": "integer",
+            "example": 1452
+          },
+          "name": {
+            "type": "string",
+            "example": "123 main"
+          },
+          "nickname": {
+            "type": "string",
+            "example": "Main Building"
+          },
+          "address1": {
+            "type": "string",
+            "example": "123 main st"
+          },
+          "address2": {
+            "type": "string",
+            "example": "unit 1"
+          },
+          "city": {
+            "type": "string",
+            "example": "Dallas"
+          },
+          "state": {
+            "type": "string",
+            "example": "TX"
+          },
+          "zip": {
+            "type": "string",
+            "example": "12121"
+          },
+          "lat": {
+            "type": "string",
+            "example": "39.7392"
+          },
+          "lng": {
+            "type": "string",
+            "example": "-104.9903"
+          }
+        }
+      }
+    }
+  }
+}
